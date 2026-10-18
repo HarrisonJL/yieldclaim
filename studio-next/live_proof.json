@@ -796,7 +796,7 @@
    "sky-stusds",
    "250000"
   ],
-  "note": "MATCHES and the vault paid about 5.7%: allowed",
+  "note": "MATCHES and the vault paid 5.70%: allowed",
   "tx": "0x548515b3754e5da7791279af87d34da242d06a906806e57297906a7c1a501c8d",
   "result": "FINISHED_WITH_RETURN",
   "votes": [
@@ -962,5 +962,641 @@
    "cap_raw": "1000000",
    "claim_id": "sky-susds"
   }
+ },
+ {
+  "id": "reg-demo-overstated",
+  "step": "register",
+  "args": [
+   "demo-overstated",
+   "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/overstated-vault.html",
+   "Example Vault",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "SYNTHETIC page: claims 12.00% for the sUSDS vault"
+  ],
+  "note": "a page that claims far more than its vault paid",
+  "tx": "0x9675a0c8a97a8a69adbb5b86f27485c87f8b1fc7265fc61ba38e562f6f08d956",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "demo-overstated",
+   "decided_count": 0,
+   "label": "Example Vault",
+   "note": "SYNTHETIC page: claims 12.00% for the sUSDS vault",
+   "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/overstated-vault.html",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T17:33:06.423983+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+  }
+ },
+ {
+  "id": "reg-demo-understated",
+  "step": "register",
+  "args": [
+   "demo-understated",
+   "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/understated-vault.html",
+   "Example Vault",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "SYNTHETIC page: claims 1.00% for the sUSDS vault"
+  ],
+  "note": "a page that claims far less than its vault paid",
+  "tx": "0x05185b13f9f16a750dd3fa28742ea03be74eca5690ae715739a336331f5dc39b",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "demo-understated",
+   "decided_count": 0,
+   "label": "Example Vault",
+   "note": "SYNTHETIC page: claims 1.00% for the sUSDS vault",
+   "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/understated-vault.html",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T17:33:21.022017+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+  }
+ },
+ {
+  "id": "check-demo-overstated",
+  "step": "check",
+  "args": [
+   "demo-overstated"
+  ],
+  "note": "a page that claims far more than its vault paid",
+  "tx": "0x77ea43867cd0105f8d6e70bf0eb904afd3456f0f3f6dc5d82a4912259150f2e4",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220902
+    },
+    "points": [
+     {
+      "block": 26220902,
+      "price": "1113258856270412574",
+      "ts": 1792344023
+     },
+     {
+      "block": 26170502,
+      "price": "1112460312024235270",
+      "ts": 1791737279
+     },
+     {
+      "block": 26004902,
+      "price": "1109948774869300917",
+      "ts": 1789740731
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 5,
+   "checked_at": "2026-10-18T17:33:35.682873+00:00",
+   "claim_id": "demo-overstated",
+   "previous_id": null,
+   "reading": {
+    "basis": "APY",
+    "index": 0,
+    "number": "12.00",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "Vault Example Vault Example Vault pays 12.00% APY"
+   },
+   "reasons": [
+    "the page claims 820 basis points more than the vault paid"
+   ],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APY",
+    "basis_used": "APY",
+    "claim_bps": 1200,
+    "gap_bps": 820,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 373,
+      "apy_bps": 380,
+      "seconds": 606744
+     },
+     "30": {
+      "apr_bps": 361,
+      "apy_bps": 367,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 380,
+    "window_days": 7
+   },
+   "verdict": "OVERSTATED"
+  }
+ },
+ {
+  "id": "check-demo-understated",
+  "step": "check",
+  "args": [
+   "demo-understated"
+  ],
+  "note": "a page that claims far less than its vault paid",
+  "tx": "0x65d51c4ab77043ab2a5f28f6ad2fe13f63d601f5b73d11fcf79db37be79c017e",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220902
+    },
+    "points": [
+     {
+      "block": 26220902,
+      "price": "1113258856270412574",
+      "ts": 1792344023
+     },
+     {
+      "block": 26170502,
+      "price": "1112460312024235270",
+      "ts": 1791737279
+     },
+     {
+      "block": 26004902,
+      "price": "1109948774869300917",
+      "ts": 1789740731
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 6,
+   "checked_at": "2026-10-18T17:33:52.858260+00:00",
+   "claim_id": "demo-understated",
+   "previous_id": null,
+   "reading": {
+    "basis": "APY",
+    "index": 0,
+    "number": "1.00",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "Vault Example Vault Example Vault pays 1.00% APY"
+   },
+   "reasons": [
+    "the vault paid 280 basis points more than the page claims"
+   ],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APY",
+    "basis_used": "APY",
+    "claim_bps": 100,
+    "gap_bps": -280,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 373,
+      "apy_bps": 380,
+      "seconds": 606744
+     },
+     "30": {
+      "apr_bps": 361,
+      "apy_bps": 367,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 380,
+    "window_days": 7
+   },
+   "verdict": "UNDERSTATED"
+  }
+ },
+ {
+  "id": "g-overstated",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "demo-overstated",
+   "1"
+  ],
+  "note": "OVERSTATED: refused",
+  "tx": "0x949a6af6ef170c069d9e168ddf0dbf2ade5744f037adcd531b461fa5ee1f3ce8",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "'demo-overstated' refused: its page is OVERSTATED (this gate accepts MATCHES, UNDERSTATED)",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "demo-overstated"
+  }
+ },
+ {
+  "id": "read",
+  "step": "read",
+  "claims": [
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "demo-overstated",
+    "decided_count": 1,
+    "label": "Example Vault",
+    "note": "SYNTHETIC page: claims 12.00% for the sUSDS vault",
+    "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/overstated-vault.html",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T17:33:06.423983+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "demo-understated",
+    "decided_count": 1,
+    "label": "Example Vault",
+    "note": "SYNTHETIC page: claims 1.00% for the sUSDS vault",
+    "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/understated-vault.html",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T17:33:21.022017+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "ethena-susde",
+    "decided_count": 1,
+    "label": "sUSDe",
+    "note": "Ethena sUSDe",
+    "page_url": "https://ethena.fi/",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T15:28:09.216003+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0x9d39a5de30e57443bff2a8307a4256c8797a3497"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "lido-steth",
+    "decided_count": 1,
+    "label": "staking with stETH",
+    "note": "Lido staking APR",
+    "page_url": "https://www.lido.fi/",
+    "rate_call": "0x035faf82",
+    "registered_at": "2026-10-18T15:27:55.198571+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "sky-home-susds",
+    "decided_count": 1,
+    "label": "sUSDS",
+    "note": "sUSDS on Sky's home page",
+    "page_url": "https://sky.money/",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T15:28:23.459724+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 0,
+    "claim_id": "sky-ssr-unchecked",
+    "decided_count": 0,
+    "label": "Sky Savings Rate",
+    "note": "registered, never checked",
+    "page_url": "https://sky.money/susds",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T15:55:04.275281+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "sky-stusds",
+    "decided_count": 1,
+    "label": "stUSDS",
+    "note": "stUSDS",
+    "page_url": "https://sky.money/stusds",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T15:27:35.976516+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0x99cd4ec3f88a45940936f469e4bb72a2a701eeb9"
+   },
+   {
+    "chain": "ethereum",
+    "check_count": 1,
+    "claim_id": "sky-susds",
+    "decided_count": 1,
+    "label": "sUSDS",
+    "note": "Sky Savings Rate: sUSDS",
+    "page_url": "https://sky.money/susds",
+    "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+    "registered_at": "2026-10-18T15:27:21.460765+00:00",
+    "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+   }
+  ],
+  "standings": {
+   "demo-overstated": {
+    "age_seconds": 129,
+    "basis_used": "APY",
+    "check_count": 1,
+    "check_id": 5,
+    "checked_at": "2026-10-18T17:33:35.682873+00:00",
+    "claim_bps": 1200,
+    "claim_id": "demo-overstated",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": 820,
+    "label": "Example Vault",
+    "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/overstated-vault.html",
+    "period": "CURRENT",
+    "realised_bps": 380,
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "OVERSTATED",
+    "window_days": 7
+   },
+   "demo-understated": {
+    "age_seconds": 115,
+    "basis_used": "APY",
+    "check_count": 1,
+    "check_id": 6,
+    "checked_at": "2026-10-18T17:33:52.858260+00:00",
+    "claim_bps": 100,
+    "claim_id": "demo-understated",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": -280,
+    "label": "Example Vault",
+    "page_url": "https://raw.githubusercontent.com/HarrisonJL/yieldclaim/main/demo/understated-vault.html",
+    "period": "CURRENT",
+    "realised_bps": 380,
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "UNDERSTATED",
+    "window_days": 7
+   },
+   "ethena-susde": {
+    "age_seconds": 1372,
+    "basis_used": null,
+    "check_count": 1,
+    "check_id": 3,
+    "checked_at": "2026-10-18T17:12:59.122953+00:00",
+    "claim_bps": null,
+    "claim_id": "ethena-susde",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": null,
+    "label": "sUSDe",
+    "page_url": "https://ethena.fi/",
+    "period": null,
+    "realised_bps": null,
+    "tolerance_bps": 50,
+    "vault": "0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+    "verdict": "NOT_COMPARABLE",
+    "window_days": null
+   },
+   "lido-steth": {
+    "age_seconds": 1397,
+    "basis_used": "APR",
+    "check_count": 1,
+    "check_id": 2,
+    "checked_at": "2026-10-18T17:12:36.185497+00:00",
+    "claim_bps": 220,
+    "claim_id": "lido-steth",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": -1,
+    "label": "staking with stETH",
+    "page_url": "https://www.lido.fi/",
+    "period": "CURRENT",
+    "realised_bps": 221,
+    "tolerance_bps": 50,
+    "vault": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0",
+    "verdict": "MATCHES",
+    "window_days": 7
+   },
+   "sky-home-susds": {
+    "age_seconds": 1350,
+    "basis_used": "APY",
+    "check_count": 1,
+    "check_id": 4,
+    "checked_at": "2026-10-18T17:13:26.408575+00:00",
+    "claim_bps": 380,
+    "claim_id": "sky-home-susds",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": 0,
+    "label": "sUSDS",
+    "page_url": "https://sky.money/",
+    "period": "CURRENT",
+    "realised_bps": 380,
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "MATCHES",
+    "window_days": 7
+   },
+   "sky-ssr-unchecked": {
+    "age_seconds": null,
+    "basis_used": null,
+    "check_count": 0,
+    "check_id": null,
+    "checked_at": null,
+    "claim_bps": null,
+    "claim_id": "sky-ssr-unchecked",
+    "decided_count": 0,
+    "exists": true,
+    "gap_bps": null,
+    "label": "Sky Savings Rate",
+    "page_url": "https://sky.money/susds",
+    "period": null,
+    "realised_bps": null,
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "NO_CHECK",
+    "window_days": null
+   },
+   "sky-stusds": {
+    "age_seconds": 1437,
+    "basis_used": "APY",
+    "check_count": 1,
+    "check_id": 1,
+    "checked_at": "2026-10-18T17:12:04.951794+00:00",
+    "claim_bps": 564,
+    "claim_id": "sky-stusds",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": -5,
+    "label": "stUSDS",
+    "page_url": "https://sky.money/stusds",
+    "period": "CURRENT",
+    "realised_bps": 569,
+    "tolerance_bps": 50,
+    "vault": "0x99cd4ec3f88a45940936f469e4bb72a2a701eeb9",
+    "verdict": "MATCHES",
+    "window_days": 7
+   },
+   "sky-susds": {
+    "age_seconds": 1463,
+    "basis_used": "APY",
+    "check_count": 1,
+    "check_id": 0,
+    "checked_at": "2026-10-18T17:11:41.989520+00:00",
+    "claim_bps": 380,
+    "claim_id": "sky-susds",
+    "decided_count": 1,
+    "exists": true,
+    "gap_bps": 0,
+    "label": "sUSDS",
+    "page_url": "https://sky.money/susds",
+    "period": "CURRENT",
+    "realised_bps": 380,
+    "tolerance_bps": 50,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "MATCHES",
+    "window_days": 7
+   }
+  },
+  "state": {
+   "check_count": 7,
+   "claim_count": 8
+  },
+  "rules": {
+   "anchor_radius": 250,
+   "apy_convention": "(1 + apr/365)^365 - 1 with apr the simple annualised growth of the index; basis points, rounded down",
+   "bases": [
+    "APY",
+    "APR",
+    "UNSPECIFIED"
+   ],
+   "blocks_per_day": 7200,
+   "chain": "ethereum",
+   "comparable_periods": [
+    "CURRENT",
+    "AVG_7D",
+    "AVG_30D"
+   ],
+   "max_candidates": 8,
+   "max_head_lag_blocks": 1800,
+   "min_sources": 2,
+   "periods": [
+    "CURRENT",
+    "AVG_7D",
+    "AVG_30D",
+    "AVG_OTHER",
+    "SINCE_INCEPTION",
+    "PROJECTED",
+    "UNKNOWN"
+   ],
+   "qualifiers": [
+    "NONE",
+    "UP_TO",
+    "PROMOTIONAL",
+    "FIXED_TERM",
+    "REWARD_TOKENS",
+    "LEVERAGED",
+    "OTHER"
+   ],
+   "rpcs": [
+    "https://eth.drpc.org",
+    "https://gateway.tenderly.co/public/mainnet",
+    "https://eth-pokt.nodies.app"
+   ],
+   "tolerance_bps": [
+    10,
+    500
+   ],
+   "verdicts": [
+    "MATCHES",
+    "OVERSTATED",
+    "UNDERSTATED",
+    "NOT_COMPARABLE",
+    "UNDETERMINED"
+   ],
+   "window_slack_pct": [
+    85,
+    115
+   ],
+   "windows_days": [
+    7,
+    30
+   ]
+  },
+  "gate_config": {
+   "allocation_count": 2,
+   "cap_raw": "1000000",
+   "max_age_seconds": 86400,
+   "min_realised_bps": 300,
+   "owner": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "yieldclaim_address": "0xE8fDfd4F9FB3d4Df9E67e61Db9F25D6dcF9Df0bc"
+  },
+  "allocations": [
+   {
+    "allocated_at": "2026-10-18T17:14:18.921466+00:00",
+    "allocated_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "amount_raw": "250000",
+    "claim_id": "sky-stusds",
+    "page_url": "https://sky.money/stusds",
+    "realised_bps": 569,
+    "vault": "0x99cd4ec3f88a45940936f469e4bb72a2a701eeb9",
+    "verdict": "MATCHES"
+   },
+   {
+    "allocated_at": "2026-10-18T17:14:09.769188+00:00",
+    "allocated_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+    "amount_raw": "400000",
+    "claim_id": "sky-susds",
+    "page_url": "https://sky.money/susds",
+    "realised_bps": 380,
+    "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd",
+    "verdict": "MATCHES"
+   }
+  ]
  }
 ]

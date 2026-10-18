@@ -7,7 +7,7 @@
 | Network | GenLayer Studio Next (chain 61997) |
 | YieldClaim | [`0xE8fDfd4F9FB3d4Df9E67e61Db9F25D6dcF9Df0bc`](https://explorer-studio-dev.genlayer.com/address/0xE8fDfd4F9FB3d4Df9E67e61Db9F25D6dcF9Df0bc) |
 | VaultGate (a consumer) | [`0x9876768863B6fDacA59b39f227c3C3A0E751DBa6`](https://explorer-studio-dev.genlayer.com/address/0x9876768863B6fDacA59b39f227c3C3A0E751DBa6) |
-| Live proof | [CONTRACT.md](CONTRACT.md): four real pages (Sky's sUSDS and stUSDS, Lido, Ethena) against their vaults, the refusals, two clearly marked synthetic pages for the verdicts no real page earned, and the gate allocating and refusing; LIVE_TX_COUNT transactions, every one linked |
+| Live proof | [CONTRACT.md](CONTRACT.md): four real pages (Sky's sUSDS and stUSDS, Lido, Ethena) against their vaults, the refusals, two clearly marked synthetic pages for the verdicts no real page earned, and the gate allocating and refusing; 30 transactions, every one linked |
 | Research | [research/README.md](research/README.md): what the validators can reach, which keyless archive nodes work, what the real vaults paid, and the decisions that followed |
 | Tests | 303 Direct Mode tests on the captured pages and on-chain values; 221 safety mutations, all killed |
 

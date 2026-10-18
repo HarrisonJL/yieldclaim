@@ -20,7 +20,7 @@ Both contracts passed the live runner's `getContractSchemaForCode` check before 
 
 ## Live proof (2026-10-18)
 
-Reproduce with `cd studio-next && npx tsx prove.ts <yieldclaim> <register|check|demo|gate|read> [vaultgate] [strict gate]`. Every row is from [`studio-next/live_proof.json`](studio-next/live_proof.json), written as it ran (it resumes where it stopped). "Agree" counts the validators that actively voted (Studio Next leaves the rest of the 5-seat committee idle). **All 25 transactions reached consensus, 24 of them with every voting validator agreeing and 1 with a dissenting vote (shown as "disagree" in the tables)**, including the ones the contracts refused: a refusal is a decided outcome.
+Reproduce with `cd studio-next && npx tsx prove.ts <yieldclaim> <register|check|demo|gate|read> [vaultgate] [strict gate]`. Every row is from [`studio-next/live_proof.json`](studio-next/live_proof.json), written as it ran (it resumes where it stopped). "Agree" counts the validators that actively voted (Studio Next leaves the rest of the 5-seat committee idle). **All 30 transactions reached consensus, 29 of them with every voting validator agreeing and 1 with a dissenting vote (shown as "disagree" in the tables)**, including the ones the contracts refused: a refusal is a decided outcome.
 
 ### 1. Claims registered
 
@@ -60,6 +60,15 @@ One `check` is one consensus transaction: every validator fetches the page and r
 
 The on-chain facts behind every row (block numbers, timestamps, share prices) are in the check's record: `get_check(id)`; the explorer links above show the validators' votes.
 
+### 4. Two SYNTHETIC pages, for the verdicts no real page earned
+
+On the day of the proof every real page stated a figure its vault had paid (or a promotion that was not the vault's yield at all). To show `OVERSTATED` and `UNDERSTATED` on-chain, two pages were written for this purpose ([`demo/`](demo/), served from `raw.githubusercontent.com`): they present a fictitious "Example Vault" and are registered against a REAL vault, Sky's sUSDS. **They are not real products and no issuer made these claims.**
+
+| Claim | The page says | Vault paid | Gap | Verdict | Tx |
+|---|---|---|---|---|---|
+| `demo-overstated` | “Vault Example Vault Example Vault pays 12.00% APY” | 3.80% (APY, 7d) | +820 | **OVERSTATED** | [`0x77ea4386…`](https://explorer-studio-dev.genlayer.com/tx/0x77ea43867cd0105f8d6e70bf0eb904afd3456f0f3f6dc5d82a4912259150f2e4) 3 agree |
+| `demo-understated` | “Vault Example Vault Example Vault pays 1.00% APY” | 3.80% (APY, 7d) | -280 | **UNDERSTATED** | [`0x65d51c4a…`](https://explorer-studio-dev.genlayer.com/tx/0x65d51c4ab77043ab2a5f28f6ad2fe13f63d601f5b73d11fcf79db37be79c017e) 3 agree |
+
 ### 5. VaultGate: a consumer that acts on the verdict
 
 The gate records an allocation to a claim only if YieldClaim's standing for it is fresh, MATCHES or UNDERSTATED, a verified yield at or above the gate's floor, and within the cap. It reads `get_standing` at the moment of the call, from YieldClaim's own record.
@@ -67,13 +76,16 @@ The gate records an allocation to a claim only if YieldClaim's standing for it i
 | What it shows | Gate | Call | Outcome | Tx |
 |---|---|---|---|---|
 | MATCHES and the vault paid 3.80% (above the 3.00% floor): allowed | gate | `allocate(sky-susds, 400,000)` | **recorded** | [`0xd650dd97…`](https://explorer-studio-dev.genlayer.com/tx/0xd650dd97f3d9e95a767dd39333f9ffb8dba71211ddd711506aac896ac33e98d6) 3 agree |
-| MATCHES and the vault paid about 5.7%: allowed | gate | `allocate(sky-stusds, 250,000)` | **recorded** | [`0x548515b3…`](https://explorer-studio-dev.genlayer.com/tx/0x548515b3754e5da7791279af87d34da242d06a906806e57297906a7c1a501c8d) 3 agree |
+| MATCHES and the vault paid 5.70%: allowed | gate | `allocate(sky-stusds, 250,000)` | **recorded** | [`0x548515b3…`](https://explorer-studio-dev.genlayer.com/tx/0x548515b3754e5da7791279af87d34da242d06a906806e57297906a7c1a501c8d) 3 agree |
 | MATCHES, but the vault paid 2.21%, below the gate's 3.00% floor: refused | gate | `allocate(lido-steth, 100,000)` | refused: `'lido-steth' refused: the vault paid 221 basis points, below this gate's floor 300` | [`0x0e71e87a…`](https://explorer-studio-dev.genlayer.com/tx/0x0e71e87ac071fbad35aa5767d5b40e0d19ab46ff6e8d8686ca348225d18d5cfd) 3 agree |
 | a promotional figure: NOT_COMPARABLE: refused | gate | `allocate(ethena-susde, 1)` | refused: `'ethena-susde' refused: its page is NOT_COMPARABLE (this gate accepts MATCHES, UNDERSTATED)` | [`0x70c4e9bd…`](https://explorer-studio-dev.genlayer.com/tx/0x70c4e9bdbe517ad05a18a30ee2171bbb166d61b2bcbee6c4ef16fe5230e68246) 3 agree |
 | 400,000 already allocated; 700,000 more would pass the 1,000,000 cap: refused | gate | `allocate(sky-susds, 700,000)` | refused: `'sky-susds' refused: this would take the total past the cap 1000000` | [`0x82da6c6d…`](https://explorer-studio-dev.genlayer.com/tx/0x82da6c6d117a04c5695830bfe491e673a2e052ceffe8c8eca0b9cd4c24b6c515) 3 agree |
 | registered, never checked: refused | gate | `allocate(sky-ssr-unchecked, 1)` | refused: `'sky-ssr-unchecked' refused: no decided check yet` | [`0x2f9b1f72…`](https://explorer-studio-dev.genlayer.com/tx/0x2f9b1f728c5f948010cd6bf39b4be86180fdeca6a416dea158e72a8d57bc0bce) 3 agree |
 | a claim YieldClaim has never heard of: refused | gate | `allocate(ghost, 1)` | refused: `'ghost' refused: YieldClaim has no such claim` | [`0xc9df0564…`](https://explorer-studio-dev.genlayer.com/tx/0xc9df0564b72662173ab501356679fde85ca792e887e0a960246bd85ae6c5b385) 3 agree |
 | a gate that wants a check no more than a second old: refused | strict | `allocate(sky-susds, 1)` | refused: `'sky-susds' refused: its latest decided check is 227 seconds old; this gate wants at most 1` | [`0xf8f75c40…`](https://explorer-studio-dev.genlayer.com/tx/0xf8f75c4026dda1bd40edd804d9c215d712de12888e9c52d5426f6b5199e5b68f) 3 agree |
+| OVERSTATED: refused | gate | `allocate(demo-overstated, 1)` | refused: `'demo-overstated' refused: its page is OVERSTATED (this gate accepts MATCHES, UNDERSTATED)` | [`0x949a6af6…`](https://explorer-studio-dev.genlayer.com/tx/0x949a6af6ef170c069d9e168ddf0dbf2ade5744f037adcd531b461fa5ee1f3ce8) 3 agree |
+
+After the run the gate's `get_config()` reports 2 allocation(s); each is logged with the claim's vault and page (`get_allocations`), so a look-alike claim shows in the log.
 
 ## What the live run found
 
@@ -82,6 +94,7 @@ The gate records an allocation to a claim only if YieldClaim's standing for it i
 - **A page with five figures by the label is the hard case.** On Sky's home page five percentages sit within 250 characters of "sUSDS": its own 3.80%, a fixed-yield 5.64%, an "up to 5.31%", a rewards 5.23%, and a second 3.80%. The reader chose the sUSDS card's 3.80% and the check was `MATCHES` - with one of four voting validators disagreeing. That is the model-variance limitation, in the record.
 - **The gate acts on the verified yield, not the advertised one.** Lido's page `MATCHES` its vault, but the vault paid 2.21% APR, below the gate's 3.00% floor, so the allocation was refused. Sky's two pages paid 3.80% and 5.69% and were allocated to (400,000 and 250,000); a third allocation that would have passed the 1,000,000 cap was refused.
 - **Registration is a consensus read and it refuses what cannot be checked.** A label the page never shows, a contract with no `convertToAssets` (USDC: the three nodes had no answer at any of the three blocks), a duplicate, a tolerance below 10 basis points, a page that is not https and a claim id with a space were each refused by the validators.
+- **The two verdicts no real page earned, from two synthetic pages.** `demo/overstated-vault.html` claims 12.00% APY for a fictitious "Example Vault" registered against Sky's real sUSDS vault; the validators recorded `OVERSTATED` (1200 against the 380 the vault paid, a gap of 820 basis points), and VaultGate refused it. `demo/understated-vault.html` claims 1.00% and was recorded `UNDERSTATED` (a gap of -280). Both pages are marked as fixtures in the page itself, in `demo/` and here: they are not real products and no issuer made these claims.
 - **The first deployment taught two things and was replaced.** Its Ethena check recorded the right verdict but with two of five validators voting DISAGREE, because validators compared the whole classification rather than the decision; and the reader's choice on the five-figure page was the "up to" figure. Both are in [research/README.md](research/README.md); the deployment in this repository is the second.
 
 ## Superseded deployments
