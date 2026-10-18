@@ -1,7 +1,7 @@
 // Keeps the official claims' standings fresh. A consumer wants a decided check no older than a day or so; left
-// alone, the official claims' standings age out. This asks YieldClaim for a fresh check of every claim its
+// alone, the official claims' standings age out. This asks YieldClaim for a fresh check of every checked claim its
 // deployer registered: one consensus transaction each, in which every validator reads the page and the vault's
-// share price. Checks are permissionless, so it signs with a throwaway testnet account created for this run and
+// share price. (A claim nobody has checked is left alone: the proof keeps one unchecked on purpose.) Checks are permissionless, so it signs with a throwaway testnet account created for this run and
 // funded from Studio Next's faucet: no stored key, nothing to leak.
 //
 //   npx tsx refresh.ts [claim ...]      (all of the deployer's claims, or just those named)
@@ -38,7 +38,7 @@ async function main() {
     await sleep(2200);
     return JSON.parse(safeJson(await c.readContract({ address, functionName: fn, args })));
   };
-  const claims: string[] = (await view(YIELDCLAIM, "list_claims")).filter((k: any) => k.registrant.toLowerCase() === OWNER).map((k: any) => k.claim_id);
+  const claims: string[] = (await view(YIELDCLAIM, "list_claims")).filter((k: any) => k.registrant.toLowerCase() === OWNER && k.check_count > 0).map((k: any) => k.claim_id);
   console.log(`YieldClaim ${YIELDCLAIM}: ${claims.length} official claims`);
   const only = process.argv.slice(2);
   const todo = claims.filter((id) => only.length === 0 || only.includes(id));
