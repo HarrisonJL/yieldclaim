@@ -1,0 +1,180 @@
+anyone can record an allocation
+---
+_require(gl.message.sender_address == self.owner, "only the owner can record allocations")
+---
+_require(True, "only the owner can record allocations")
+===
+a zero allocation is accepted
+---
+_require(amount_raw > 0, "amount must be positive")
+---
+_require(True, "amount must be positive")
+===
+a gate with no maximum age is accepted
+---
+_require(max_age_seconds > 0, "max_age_seconds must be positive")
+---
+_require(True, "max_age_seconds must be positive")
+===
+a gate with no cap is accepted
+---
+_require(cap_raw > 0, "cap_raw must be positive")
+---
+_require(True, "cap_raw must be positive")
+===
+an unknown claim is allocated to
+---
+_require(standing["exists"], f"{claim_id!r} refused: YieldClaim has no such claim")
+---
+_require(True, f"{claim_id!r} refused: YieldClaim has no such claim")
+===
+an unchecked claim is allocated to
+---
+_require(standing["verdict"] != "NO_CHECK", f"{claim_id!r} refused: no decided check yet")
+---
+_require(True, f"{claim_id!r} refused: no decided check yet")
+===
+a stale check is accepted
+---
+age is not None and 0 <= age <= int(self.max_age_seconds)
+---
+True
+===
+a check dated in the future is accepted
+---
+age is not None and 0 <= age <= int(self.max_age_seconds)
+---
+age is not None and age <= int(self.max_age_seconds)
+===
+a check exactly at the maximum age is refused
+---
+age is not None and 0 <= age <= int(self.max_age_seconds)
+---
+age is not None and 0 <= age < int(self.max_age_seconds)
+===
+a check with no age is accepted
+---
+age is not None and 0 <= age <= int(self.max_age_seconds)
+---
+(age is None or 0 <= age <= int(self.max_age_seconds))
+===
+any verdict is accepted
+---
+_require(standing["verdict"] in ALLOWED,
+---
+_require(True,
+===
+an overstated page is accepted
+---
+ALLOWED = ("MATCHES", "UNDERSTATED")
+---
+ALLOWED = ("MATCHES", "UNDERSTATED", "OVERSTATED")
+===
+a page that undersold its yield is refused
+---
+ALLOWED = ("MATCHES", "UNDERSTATED")
+---
+ALLOWED = ("MATCHES",)
+===
+a page that cannot be compared is accepted
+---
+ALLOWED = ("MATCHES", "UNDERSTATED")
+---
+ALLOWED = ("MATCHES", "UNDERSTATED", "NOT_COMPARABLE")
+===
+the verified yield is not checked against the floor
+---
+realised is not None and realised >= int(self.min_realised_bps)
+---
+True
+===
+a yield exactly at the floor is refused
+---
+realised is not None and realised >= int(self.min_realised_bps)
+---
+realised is not None and realised > int(self.min_realised_bps)
+===
+a missing yield passes the floor
+---
+realised is not None and realised >= int(self.min_realised_bps)
+---
+(realised is None or realised >= int(self.min_realised_bps))
+===
+the cap is not enforced
+---
+total + int(amount_raw) <= int(self.cap_raw)
+---
+True
+===
+a total exactly at the cap is refused
+---
+total + int(amount_raw) <= int(self.cap_raw)
+---
+total + int(amount_raw) < int(self.cap_raw)
+===
+the cap ignores the running total
+---
+total + int(amount_raw) <= int(self.cap_raw)
+---
+int(amount_raw) <= int(self.cap_raw)
+===
+the running total is overwritten
+---
+self.totals[claim_id] = u256(total + int(amount_raw))
+---
+self.totals[claim_id] = u256(int(amount_raw))
+===
+the running total is not kept
+---
+self.totals[claim_id] = u256(total + int(amount_raw))
+---
+pass
+===
+the allocation records the wrong yield
+---
+record.realised_bps = u32(realised)
+---
+record.realised_bps = u32(0)
+===
+the allocation records the wrong verdict
+---
+record.verdict = standing["verdict"]
+---
+record.verdict = "MATCHES"
+===
+the allocation records no vault
+---
+record.vault = standing["vault"]
+---
+record.vault = ""
+===
+the allocation records no page
+---
+record.page_url = standing["page_url"]
+---
+record.page_url = ""
+===
+the allocation records no sender
+---
+        record.allocated_by = gl.message.sender_address
+
+---
+
+===
+allocation paging is not capped
+---
+limit = min(limit, MAX_PAGE_LIMIT)
+---
+pass
+===
+allocation paging ignores the offset
+---
+i = len(self.allocations) - 1 - offset
+---
+i = len(self.allocations) - 1
+===
+the gate reads the wrong claim
+---
+view().get_standing(claim_id)
+---
+view().get_standing("sky-susds")

@@ -1,0 +1,19 @@
+{
+  "name": "yieldclaim-studio-next",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deployment and live-proof tooling for YieldClaim on GenLayer Studio Next (chain 61997). Pinned to genlayer-js v2 (pre-release) - Studio Next requires its explicit-fees API.",
+  "type": "commonjs",
+  "scripts": {
+    "check-schema": "tsx check_schema.ts",
+    "deploy": "tsx deploy.ts",
+    "prove": "tsx prove.ts",
+    "verify-code": "tsx verify_code.ts"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.3",
+    "genlayer-js": "^2.0.0-rc.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

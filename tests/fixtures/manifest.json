@@ -1,0 +1,39 @@
+{
+ "pages": {
+  "sky_susds.html": {
+   "url": "https://sky.money/susds",
+   "status": 200,
+   "bytes": 113078,
+   "sha256": "f2fa17f62bef7380d2ecfd572b101825c0188157ae00d9ad9da372d6f2eefac7",
+   "captured": "2026-10-18T14:23Z"
+  },
+  "sky_stusds.html": {
+   "url": "https://sky.money/stusds",
+   "status": 200,
+   "bytes": 112542,
+   "sha256": "019e6e1b79d61aae1c7eb1a86433ad19cda9fecccf582481fedfca22412884d9",
+   "captured": "2026-10-18T14:23Z"
+  },
+  "sky_home.html": {
+   "url": "https://sky.money/",
+   "status": 200,
+   "bytes": 140306,
+   "sha256": "2b05b1d78aba0a8c811f28f2d64383ebc5e181c0edc41d41921b03328ab9f256",
+   "captured": "2026-10-18T14:23Z"
+  },
+  "ethena_home.html": {
+   "url": "https://ethena.fi/",
+   "status": 200,
+   "bytes": 113197,
+   "sha256": "dd8afdcff323f859fbff600bbeaa96c52163f312532f312160e51b40b9001687",
+   "captured": "2026-10-18T14:23Z"
+  },
+  "lido_home.html.gz": {
+   "url": "https://www.lido.fi/",
+   "status": 200,
+   "bytes": 3136549,
+   "sha256": "2f99d4c84d6ec0ff2a5095c643ca0b0a38da08a1f34b38f808cbcab383f8a00e",
+   "captured": "2026-10-18T14:23Z"
+  }
+ }
+}

@@ -1,0 +1,966 @@
+[
+ {
+  "id": "reg-sky-susds",
+  "step": "register",
+  "args": [
+   "sky-susds",
+   "https://sky.money/susds",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "Sky Savings Rate: sUSDS"
+  ],
+  "note": "Sky's sUSDS page against the sUSDS vault",
+  "tx": "0x022bf5341c40aaecbbee3daa296fb47e0f12c9680d7282fd52a324cbe4f5c062",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "sky-susds",
+   "decided_count": 0,
+   "label": "sUSDS",
+   "note": "Sky Savings Rate: sUSDS",
+   "page_url": "https://sky.money/susds",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T15:27:21.460765+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+  }
+ },
+ {
+  "id": "reg-sky-stusds",
+  "step": "register",
+  "args": [
+   "sky-stusds",
+   "https://sky.money/stusds",
+   "stUSDS",
+   "0x99CD4Ec3f88A45940936F469E4bB72A2A701EEB9",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "stUSDS"
+  ],
+  "note": "Sky's stUSDS page against the stUSDS vault",
+  "tx": "0xb7d6306100f8ee684165c0337fe86580e81de2b84ffb993926c1d4e10f7d3171",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "sky-stusds",
+   "decided_count": 0,
+   "label": "stUSDS",
+   "note": "stUSDS",
+   "page_url": "https://sky.money/stusds",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T15:27:35.976516+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0x99cd4ec3f88a45940936f469e4bb72a2a701eeb9"
+  }
+ },
+ {
+  "id": "reg-lido-steth",
+  "step": "register",
+  "args": [
+   "lido-steth",
+   "https://www.lido.fi/",
+   "staking with stETH",
+   "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+   "0x035faf82",
+   50,
+   "Lido staking APR"
+  ],
+  "note": "Lido's staking APR against wstETH's stEthPerToken()",
+  "tx": "0x81b5577481bd167b4a0832d50298faab861d0a6b353305b7107f876cd2737a8d",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "lido-steth",
+   "decided_count": 0,
+   "label": "staking with stETH",
+   "note": "Lido staking APR",
+   "page_url": "https://www.lido.fi/",
+   "rate_call": "0x035faf82",
+   "registered_at": "2026-10-18T15:27:55.198571+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0"
+  }
+ },
+ {
+  "id": "reg-ethena-susde",
+  "step": "register",
+  "args": [
+   "ethena-susde",
+   "https://ethena.fi/",
+   "sUSDe",
+   "0x9D39A5DE30e57443BfF2A8307A4256c8797A3497",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "Ethena sUSDe"
+  ],
+  "note": "Ethena's home page, where the only yield figure is promotional",
+  "tx": "0x03946632f27c8415c8673fbb8cb8b6ab013c9b5c56492025b5852e8bc1d2f325",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "AGREE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "ethena-susde",
+   "decided_count": 0,
+   "label": "sUSDe",
+   "note": "Ethena sUSDe",
+   "page_url": "https://ethena.fi/",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T15:28:09.216003+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0x9d39a5de30e57443bff2a8307a4256c8797a3497"
+  }
+ },
+ {
+  "id": "reg-sky-home-susds",
+  "step": "register",
+  "args": [
+   "sky-home-susds",
+   "https://sky.money/",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "sUSDS on Sky's home page"
+  ],
+  "note": "five figures near the label: the reader has to choose",
+  "tx": "0x76d30b4921c14bf633c93ff7eb3ce60d8774f1b60a138cb09e8d6e61907d568c",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "sky-home-susds",
+   "decided_count": 0,
+   "label": "sUSDS",
+   "note": "sUSDS on Sky's home page",
+   "page_url": "https://sky.money/",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T15:28:23.459724+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+  }
+ },
+ {
+  "id": "reg-sky-ssr-unchecked",
+  "step": "register",
+  "args": [
+   "sky-ssr-unchecked",
+   "https://sky.money/susds",
+   "Sky Savings Rate",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   "registered, never checked"
+  ],
+  "note": "a claim with no check yet (for the gate)",
+  "tx": "0x1e012f7ec58887a9d6d7b900c19ea062384d1897d54ed62ed907fe49f9738670",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "",
+  "claim": {
+   "chain": "ethereum",
+   "check_count": 0,
+   "claim_id": "sky-ssr-unchecked",
+   "decided_count": 0,
+   "label": "Sky Savings Rate",
+   "note": "registered, never checked",
+   "page_url": "https://sky.money/susds",
+   "rate_call": "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   "registered_at": "2026-10-18T15:55:04.275281+00:00",
+   "registrant": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "tolerance_bps": 50,
+   "vault": "0xa3931d71877c0e7a3148cb7eb4463524fec27fbd"
+  }
+ },
+ {
+  "id": "refuse-label",
+  "step": "refuse-register",
+  "args": [
+   "x-label",
+   "https://sky.money/susds",
+   "Ethena",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   ""
+  ],
+  "note": "a label the page never shows",
+  "tx": "0x04b966895a3395b29b1aa39fd59e2bd17c2b49f44a1654b366d6bbfc529f5dba",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "claim refused: no_figure_near_the_label"
+ },
+ {
+  "id": "refuse-vault",
+  "step": "refuse-register",
+  "args": [
+   "x-vault",
+   "https://sky.money/susds",
+   "sUSDS",
+   "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   ""
+  ],
+  "note": "a contract that has no such view (USDC has no convertToAssets)",
+  "tx": "0xcd044117bbe98deee0b66643f0a9b74d1b1373e0467b2445bbe4f4fed55175a9",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "claim refused: too_few_sources_at_block_26220774, too_few_sources_at_block_26170374, too_few_sources_at_block_26004774"
+ },
+ {
+  "id": "refuse-duplicate",
+  "step": "refuse-register",
+  "args": [
+   "x-dup",
+   "https://sky.money/susds",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   ""
+  ],
+  "note": "the same page, label, vault and call again",
+  "tx": "0xbf1477f26ea5312ab04fbfba4baeeaa6b1a5c45935d96be0ce8ae89fb84e8771",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "that page, label, vault and call are already registered as 'sky-susds'"
+ },
+ {
+  "id": "refuse-tolerance",
+  "step": "refuse-register",
+  "args": [
+   "x-tol",
+   "https://sky.money/susds",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   5,
+   ""
+  ],
+  "note": "a tolerance below the 10 basis point minimum",
+  "tx": "0xe557a86d5fae2223795664ab5e7fea3f48aab248152c62ae3e59945fabcbe074",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "tolerance_bps must be between 10 and 500"
+ },
+ {
+  "id": "refuse-http",
+  "step": "refuse-register",
+  "args": [
+   "x-http",
+   "http://sky.money/susds",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   ""
+  ],
+  "note": "a page that is not https",
+  "tx": "0x26031c0f3a93e0a401501e97bb5f3f2bc8be1f3dcec74b31780bc7b93d4e37ba",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "page_url must be an https URL on a named host, without a port or fragment"
+ },
+ {
+  "id": "refuse-claim-id",
+  "step": "refuse-register",
+  "args": [
+   "bad id!",
+   "https://sky.money/susds",
+   "sUSDS",
+   "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+   "0x07a2d13a0000000000000000000000000000000000000000000000000de0b6b3a7640000",
+   50,
+   ""
+  ],
+  "note": "a claim id with a space and a bang",
+  "tx": "0x05dcff781aa7bf2d054e7dfc9a893979f013c37a7613b7bda672cd6db76a82ce",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "claim_id must be 1-32 characters of A-Z, a-z, 0-9, _ or -"
+ },
+ {
+  "id": "check-sky-susds",
+  "step": "check",
+  "args": [
+   "sky-susds"
+  ],
+  "note": "Sky's sUSDS page against the sUSDS vault",
+  "tx": "0x7301ef631b1172d715d948cd3494034744b71e54e5f2843f4c36269af612fc89",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220774
+    },
+    "points": [
+     {
+      "block": 26220774,
+      "price": "1113256833995833271",
+      "ts": 1792342487
+     },
+     {
+      "block": 26170374,
+      "price": "1112458243837221829",
+      "ts": 1791735707
+     },
+     {
+      "block": 26004774,
+      "price": "1109946862872507644",
+      "ts": 1789739195
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 0,
+   "checked_at": "2026-10-18T17:11:41.989520+00:00",
+   "claim_id": "sky-susds",
+   "previous_id": null,
+   "reading": {
+    "basis": "APY",
+    "index": 0,
+    "number": "3.80",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "control, set, or guarantee the rate. 3.80% APY"
+   },
+   "reasons": [],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APY",
+    "basis_used": "APY",
+    "claim_bps": 380,
+    "gap_bps": 0,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 373,
+      "apy_bps": 380,
+      "seconds": 606780
+     },
+     "30": {
+      "apr_bps": 361,
+      "apy_bps": 367,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 380,
+    "window_days": 7
+   },
+   "verdict": "MATCHES"
+  }
+ },
+ {
+  "id": "check-sky-stusds",
+  "step": "check",
+  "args": [
+   "sky-stusds"
+  ],
+  "note": "Sky's stUSDS page against the stUSDS vault",
+  "tx": "0x1453389b7a34c02f8f68c8b07c600ef002fc8f6632b62e0173bda7b9da87bcb5",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220774
+    },
+    "points": [
+     {
+      "block": 26220774,
+      "price": "1079297549474881300",
+      "ts": 1792342487
+     },
+     {
+      "block": 26170374,
+      "price": "1078147666644351870",
+      "ts": 1791735707
+     },
+     {
+      "block": 26004774,
+      "price": "1074719090155084675",
+      "ts": 1789739195
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 1,
+   "checked_at": "2026-10-18T17:12:04.951794+00:00",
+   "claim_id": "sky-stusds",
+   "previous_id": null,
+   "reading": {
+    "basis": "APY",
+    "index": 0,
+    "number": "5.64",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "the rate. All yields are variable. 5.64% APY"
+   },
+   "reasons": [],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APY",
+    "basis_used": "APY",
+    "claim_bps": 564,
+    "gap_bps": -5,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 554,
+      "apy_bps": 569,
+      "seconds": 606780
+     },
+     "30": {
+      "apr_bps": 516,
+      "apy_bps": 529,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 569,
+    "window_days": 7
+   },
+   "verdict": "MATCHES"
+  }
+ },
+ {
+  "id": "check-lido-steth",
+  "step": "check",
+  "args": [
+   "lido-steth"
+  ],
+  "note": "Lido's staking APR against wstETH's stEthPerToken()",
+  "tx": "0x2cc95aacdaf3b6553667a92355dee584d4650b0038e0ac5022c62487786950c9",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220774
+    },
+    "points": [
+     {
+      "block": 26220774,
+      "price": "1246620093818911326",
+      "ts": 1792342487
+     },
+     {
+      "block": 26170374,
+      "price": "1246088839423097632",
+      "ts": 1791735707
+     },
+     {
+      "block": 26004774,
+      "price": "1244329774635371753",
+      "ts": 1789739195
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 2,
+   "checked_at": "2026-10-18T17:12:36.185497+00:00",
+   "claim_id": "lido-steth",
+   "previous_id": null,
+   "reading": {
+    "basis": "APR",
+    "index": 0,
+    "number": "2.2",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "Empowering and securing Ethereum since 2020 2.2% APR*"
+   },
+   "reasons": [],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APR",
+    "basis_used": "APR",
+    "claim_bps": 220,
+    "gap_bps": -1,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 221,
+      "apy_bps": 224,
+      "seconds": 606780
+     },
+     "30": {
+      "apr_bps": 222,
+      "apy_bps": 225,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 221,
+    "window_days": 7
+   },
+   "verdict": "MATCHES"
+  }
+ },
+ {
+  "id": "check-ethena-susde",
+  "step": "check",
+  "args": [
+   "ethena-susde"
+  ],
+  "note": "Ethena's home page, where the only yield figure is promotional",
+  "tx": "0x5dc56a750481cb915025041b910095f7e2c61c99e8b8885186d827d0d7ca0bd5",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220774
+    },
+    "points": [
+     {
+      "block": 26220774,
+      "price": "1253671943861152173",
+      "ts": 1792342487
+     },
+     {
+      "block": 26170374,
+      "price": "1252537733675275914",
+      "ts": 1791735707
+     },
+     {
+      "block": 26004774,
+      "price": "1248738349821560229",
+      "ts": 1789739195
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 3,
+   "checked_at": "2026-10-18T17:12:59.122953+00:00",
+   "claim_id": "ethena-susde",
+   "previous_id": null,
+   "reading": {
+    "basis": "UNSPECIFIED",
+    "index": null,
+    "number": "",
+    "period": "UNKNOWN",
+    "qualifier": "NONE",
+    "quote": ""
+   },
+   "reasons": [
+    "the page states no headline rate for this product"
+   ],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": null,
+    "basis_used": null,
+    "claim_bps": null,
+    "gap_bps": null,
+    "period": null,
+    "realised": {
+     "7": {
+      "apr_bps": 470,
+      "apy_bps": 481,
+      "seconds": 606780
+     },
+     "30": {
+      "apr_bps": 478,
+      "apy_bps": 490,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": null,
+    "window_days": null
+   },
+   "verdict": "NOT_COMPARABLE"
+  }
+ },
+ {
+  "id": "check-sky-home-susds",
+  "step": "check",
+  "args": [
+   "sky-home-susds"
+  ],
+  "note": "five figures near the label: the reader has to choose",
+  "tx": "0x0c450beeeccd63d7099a24c360b54ebe18dcff795640043a17528a1577ce77bc",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "DISAGREE",
+   "AGREE",
+   "AGREE"
+  ],
+  "check": {
+   "chain": {
+    "pins": {
+     "now": 26220774
+    },
+    "points": [
+     {
+      "block": 26220774,
+      "price": "1113256833995833271",
+      "ts": 1792342487
+     },
+     {
+      "block": 26170374,
+      "price": "1112458243837221829",
+      "ts": 1791735707
+     },
+     {
+      "block": 26004774,
+      "price": "1109946862872507644",
+      "ts": 1789739195
+     }
+    ],
+    "problems": []
+   },
+   "check_id": 4,
+   "checked_at": "2026-10-18T17:13:26.408575+00:00",
+   "claim_id": "sky-home-susds",
+   "previous_id": null,
+   "reading": {
+    "basis": "APY",
+    "index": 0,
+    "number": "3.80",
+    "period": "CURRENT",
+    "qualifier": "NONE",
+    "quote": "rate. View more details here . 3.80% APY"
+   },
+   "reasons": [],
+   "submitted_by": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+   "summary": {
+    "basis": "APY",
+    "basis_used": "APY",
+    "claim_bps": 380,
+    "gap_bps": 0,
+    "period": "CURRENT",
+    "realised": {
+     "7": {
+      "apr_bps": 373,
+      "apy_bps": 380,
+      "seconds": 606780
+     },
+     "30": {
+      "apr_bps": 361,
+      "apy_bps": 367,
+      "seconds": 2603292
+     }
+    },
+    "realised_bps": 380,
+    "window_days": 7
+   },
+   "verdict": "MATCHES"
+  }
+ },
+ {
+  "id": "g-susds",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "sky-susds",
+   "400000"
+  ],
+  "note": "MATCHES and the vault paid 3.80% (above the 3.00% floor): allowed",
+  "tx": "0xd650dd97f3d9e95a767dd39333f9ffb8dba71211ddd711506aac896ac33e98d6",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE"
+  ],
+  "revert": "",
+  "total": {
+   "allocated_raw": "400000",
+   "cap_raw": "1000000",
+   "claim_id": "sky-susds"
+  }
+ },
+ {
+  "id": "g-stusds",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "sky-stusds",
+   "250000"
+  ],
+  "note": "MATCHES and the vault paid about 5.7%: allowed",
+  "tx": "0x548515b3754e5da7791279af87d34da242d06a906806e57297906a7c1a501c8d",
+  "result": "FINISHED_WITH_RETURN",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "",
+  "total": {
+   "allocated_raw": "250000",
+   "cap_raw": "1000000",
+   "claim_id": "sky-stusds"
+  }
+ },
+ {
+  "id": "g-floor",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "lido-steth",
+   "100000"
+  ],
+  "note": "MATCHES, but the vault paid 2.21%, below the gate's 3.00% floor: refused",
+  "tx": "0x0e71e87ac071fbad35aa5767d5b40e0d19ab46ff6e8d8686ca348225d18d5cfd",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "'lido-steth' refused: the vault paid 221 basis points, below this gate's floor 300",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "lido-steth"
+  }
+ },
+ {
+  "id": "g-notcomparable",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "ethena-susde",
+   "1"
+  ],
+  "note": "a promotional figure: NOT_COMPARABLE: refused",
+  "tx": "0x70c4e9bdbe517ad05a18a30ee2171bbb166d61b2bcbee6c4ef16fe5230e68246",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "IDLE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "AGREE"
+  ],
+  "revert": "'ethena-susde' refused: its page is NOT_COMPARABLE (this gate accepts MATCHES, UNDERSTATED)",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "ethena-susde"
+  }
+ },
+ {
+  "id": "g-cap",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "sky-susds",
+   "700000"
+  ],
+  "note": "400,000 already allocated; 700,000 more would pass the 1,000,000 cap: refused",
+  "tx": "0x82da6c6d117a04c5695830bfe491e673a2e052ceffe8c8eca0b9cd4c24b6c515",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "'sky-susds' refused: this would take the total past the cap 1000000",
+  "total": {
+   "allocated_raw": "400000",
+   "cap_raw": "1000000",
+   "claim_id": "sky-susds"
+  }
+ },
+ {
+  "id": "g-nocheck",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "sky-ssr-unchecked",
+   "1"
+  ],
+  "note": "registered, never checked: refused",
+  "tx": "0x2f9b1f728c5f948010cd6bf39b4be86180fdeca6a416dea158e72a8d57bc0bce",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE"
+  ],
+  "revert": "'sky-ssr-unchecked' refused: no decided check yet",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "sky-ssr-unchecked"
+  }
+ },
+ {
+  "id": "g-ghost",
+  "step": "gate",
+  "which": "gate",
+  "args": [
+   "ghost",
+   "1"
+  ],
+  "note": "a claim YieldClaim has never heard of: refused",
+  "tx": "0xc9df0564b72662173ab501356679fde85ca792e887e0a960246bd85ae6c5b385",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "IDLE",
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "AGREE"
+  ],
+  "revert": "'ghost' refused: YieldClaim has no such claim",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "ghost"
+  }
+ },
+ {
+  "id": "g-stale",
+  "step": "gate",
+  "which": "strict",
+  "args": [
+   "sky-susds",
+   "1"
+  ],
+  "note": "a gate that wants a check no more than a second old: refused",
+  "tx": "0xf8f75c4026dda1bd40edd804d9c215d712de12888e9c52d5426f6b5199e5b68f",
+  "result": "FINISHED_WITH_ERROR",
+  "votes": [
+   "AGREE",
+   "AGREE",
+   "AGREE",
+   "IDLE",
+   "IDLE"
+  ],
+  "revert": "'sky-susds' refused: its latest decided check is 227 seconds old; this gate wants at most 1",
+  "total": {
+   "allocated_raw": "0",
+   "cap_raw": "1000000",
+   "claim_id": "sky-susds"
+  }
+ }
+]

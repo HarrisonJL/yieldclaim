@@ -1,0 +1,38 @@
+{
+ "date": "2026-10-18",
+ "deployer": "0x5cdb5699bc1038e115A973bb91A646f7E98C075b",
+ "yieldclaim": {
+  "address": "0xE8fDfd4F9FB3d4Df9E67e61Db9F25D6dcF9Df0bc",
+  "deploy_tx": "0x0746ab983255e85e42ab2b5abeae0f7f7a386ef98475e7d33c6237b8df7e46b9",
+  "sha256": "5fd0097e6d6a5508b99862a107beeca1d78127cf8e43268f7d81177dfedc5999"
+ },
+ "gate": {
+  "address": "0x9876768863B6fDacA59b39f227c3C3A0E751DBa6",
+  "deploy_tx": "0x0f2a1c86d8848105f6716506b15010e37288b9a22c049aeeb97bfe2662373398",
+  "sha256": "faf97669a5243ba07a7eb34c2f7ac6830125102f529bcfcdb5e79db35f51e05a"
+ },
+ "strict": {
+  "address": "0x13A6464Ea508FDD64aCBEcFA5056b62d77D7F4c9",
+  "deploy_tx": "0x4aaff62b152daa4d0a5a27a3faa9d7e4f7323171af7fc996d474583266986e60"
+ },
+ "found_live": [
+  "**Three of the four real pages state a figure the vault paid.** Sky's sUSDS page says 3.80% APY and the vault paid 3.80% APY over the week (gap 0); Sky's stUSDS page says 5.64% against the 5.69% the vault paid (-5 basis points); Lido says 2.2% APR against 2.21% (-1). All three are `MATCHES`, graded on the basis each page states, with every voting validator agreeing.",
+  "**Ethena's only yield figure is not the vault's.** The home page offers \"~12% APY\" promotional rewards on a lending market, and the headline \"Avg sUSDe APY\" is filled in by the browser. The check recorded `NOT_COMPARABLE` (no headline rate for sUSDe on the page a validator reads), all three voting validators agreeing, and the gate refused it. The vault itself paid 4.82% APY over the week; that is recorded beside the verdict.",
+  "**A page with five figures by the label is the hard case.** On Sky's home page five percentages sit within 250 characters of \"sUSDS\": its own 3.80%, a fixed-yield 5.64%, an \"up to 5.31%\", a rewards 5.23%, and a second 3.80%. The reader chose the sUSDS card's 3.80% and the check was `MATCHES` - with one of four voting validators disagreeing. That is the model-variance limitation, in the record.",
+  "**The gate acts on the verified yield, not the advertised one.** Lido's page `MATCHES` its vault, but the vault paid 2.21% APR, below the gate's 3.00% floor, so the allocation was refused. Sky's two pages paid 3.80% and 5.69% and were allocated to (400,000 and 250,000); a third allocation that would have passed the 1,000,000 cap was refused.",
+  "**Registration is a consensus read and it refuses what cannot be checked.** A label the page never shows, a contract with no `convertToAssets` (USDC: the three nodes had no answer at any of the three blocks), a duplicate, a tolerance below 10 basis points, a page that is not https and a claim id with a space were each refused by the validators.",
+  "**The first deployment taught two things and was replaced.** Its Ethena check recorded the right verdict but with two of five validators voting DISAGREE, because validators compared the whole classification rather than the decision; and the reader's choice on the five-figure page was the \"up to\" figure. Both are in [research/README.md](research/README.md); the deployment in this repository is the second."
+ ],
+ "superseded": [
+  {
+   "contract": "YieldClaim (first deployment)",
+   "address": "0x26A19739cbec6928F046412B44b213988043cEfa",
+   "why": "Deployed earlier the same day (deploy tx 0x2d03d46f…). Validators compared the model's whole classification, so two readings that led to the same NOT_COMPARABLE verdict counted as a disagreement, and the reader's prompt did not say the figures were listed nearest the product's name first. The code differs in `_decision_key` and the prompt only; its proof is kept in studio-next/live_proof_superseded_v1.json."
+  },
+  {
+   "contract": "VaultGate and the strict VaultGate (first deployment)",
+   "address": "0x5A3256946F30d566e1825Ab6eDC82fe4da7A0DAe and 0xA289270C51fdb228563b66fba10E8917B43eDDB1",
+   "why": "Constructed with the superseded YieldClaim's address."
+  }
+ ]
+}

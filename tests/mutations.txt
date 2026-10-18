@@ -1,0 +1,1235 @@
+simple growth divides by the new price instead of the old
+---
+return ((p1 - p0) * YEAR_SECONDS * 10000) // (p0 * seconds)
+---
+return ((p1 - p0) * YEAR_SECONDS * 10000) // (p1 * seconds)
+===
+simple growth is annualised over the wrong year
+---
+YEAR_SECONDS = 365 * 86400
+---
+YEAR_SECONDS = 360 * 86400
+===
+simple growth rounds up instead of down
+---
+return ((p1 - p0) * YEAR_SECONDS * 10000) // (p0 * seconds)
+---
+return -((-(p1 - p0) * YEAR_SECONDS * 10000) // (p0 * seconds))
+===
+compounding uses 364 periods
+---
+acc, base, n = ONE, step, 365
+---
+acc, base, n = ONE, step, 364
+===
+compounding divides the rate by the wrong number of periods
+---
+(p0 * seconds * 365)
+---
+(p0 * seconds * 364)
+===
+compounding is skipped (APY equals APR)
+---
+    return ((acc - ONE) * 10000) // ONE
+---
+    return ((step - ONE) * 365 * 10000) // ONE
+===
+compounding drops the odd squarings
+---
+        if n & 1:
+            acc = acc * base // ONE
+---
+        if False:
+            acc = acc * base // ONE
+===
+compounding rounds up
+---
+    return ((acc - ONE) * 10000) // ONE
+---
+    return -((-(acc - ONE) * 10000) // ONE)
+===
+a written percentage keeps one decimal
+---
+return int(whole) * 100 + int((frac + "00")[:2])
+---
+return int(whole) * 100 + int((frac + "00")[:1])
+===
+a written percentage is scaled by ten
+---
+return int(whole) * 100 + int((frac + "00")[:2])
+---
+return int(whole) * 10 + int((frac + "00")[:2])
+===
+a written percentage ignores its decimals
+---
+return int(whole) * 100 + int((frac + "00")[:2])
+---
+return int(whole) * 100
+===
+the windows are read from the wrong blocks
+---
+for days, then in zip(WINDOWS, points[1:]):
+---
+for days, then in zip(WINDOWS, points[:0:-1]):
+===
+a window may be arbitrarily short
+---
+if not nominal * WINDOW_SLACK[0] // 100 <= seconds <= nominal * WINDOW_SLACK[1] // 100:
+---
+if not 1 <= seconds <= nominal * WINDOW_SLACK[1] // 100:
+===
+a window may be arbitrarily long
+---
+if not nominal * WINDOW_SLACK[0] // 100 <= seconds <= nominal * WINDOW_SLACK[1] // 100:
+---
+if not nominal * WINDOW_SLACK[0] // 100 <= seconds:
+===
+a window may be negative
+---
+if not nominal * WINDOW_SLACK[0] // 100 <= seconds <= nominal * WINDOW_SLACK[1] // 100:
+---
+if not seconds <= nominal * WINDOW_SLACK[1] // 100:
+===
+the slack allows windows 20 percent short
+---
+WINDOW_SLACK = (85, 115)
+---
+WINDOW_SLACK = (80, 115)
+===
+the slack allows windows 20 percent long
+---
+WINDOW_SLACK = (85, 115)
+---
+WINDOW_SLACK = (85, 120)
+===
+the realised summary leaves out the seconds a window covered
+---
+{"seconds": seconds, "apr_bps"
+---
+{"apr_bps"
+===
+a claim exactly at the tolerance is overstated
+---
+if gap > tolerance_bps:
+---
+if gap >= tolerance_bps:
+===
+a claim exactly at the tolerance is understated
+---
+elif gap < -tolerance_bps:
+---
+elif gap <= -tolerance_bps:
+===
+overstated and understated are swapped
+---
+out["verdict"], out["reasons"] = "OVERSTATED"
+---
+out["verdict"], out["reasons"] = "UNDERSTATED"
+===
+the gap is claim minus realised the wrong way round
+---
+gap = claim - realised_bps
+---
+gap = realised_bps - claim
+===
+a qualified figure is compared anyway
+---
+if reading["qualifier"] != "NONE":
+---
+if False:
+===
+a figure for any period is compared
+---
+if reading["period"] not in COMPARABLE_PERIODS:
+---
+if False:
+===
+a 30 day average is compared with the 7 day yield
+---
+window = 30 if reading["period"] == "AVG_30D" else 7
+---
+window = 7
+===
+a current rate is compared with the 30 day yield
+---
+window = 30 if reading["period"] == "AVG_30D" else 7
+---
+window = 30
+===
+an APR claim is graded against the APY
+---
+if reading["basis"] == "APR":
+        used = "APR"
+---
+if False:
+        used = "APR"
+===
+an APY claim is graded against the APR
+---
+elif reading["basis"] == "APY":
+        used = "APY"
+---
+elif False:
+        used = "APY"
+===
+an unspecified basis breaks ties in the page's favour
+---
+used = "APR" if abs(claim - r["apr_bps"]) <= abs(claim - r["apy_bps"]) else "APY"
+---
+used = "APR" if abs(claim - r["apr_bps"]) < abs(claim - r["apy_bps"]) else "APY"
+===
+an unspecified basis is always read as APR
+---
+used = "APR" if abs(claim - r["apr_bps"]) <= abs(claim - r["apy_bps"]) else "APY"
+---
+used = "APR"
+===
+an unspecified basis is always read as APY
+---
+used = "APR" if abs(claim - r["apr_bps"]) <= abs(claim - r["apy_bps"]) else "APY"
+---
+used = "APY"
+===
+an unspecified basis takes the farther figure
+---
+used = "APR" if abs(claim - r["apr_bps"]) <= abs(claim - r["apy_bps"]) else "APY"
+---
+used = "APR" if abs(claim - r["apr_bps"]) >= abs(claim - r["apy_bps"]) else "APY"
+===
+a page with no headline rate is compared
+---
+if reading["index"] is None:
+        out["reasons"] = ["the page states no headline rate for this product"]
+---
+if False:
+        out["reasons"] = ["the page states no headline rate for this product"]
+===
+a missing reading is not undetermined
+---
+    if reading is None:
+        out["reasons"] = ["rate_unreadable"]
+        return out
+---
+    if False:
+        out["reasons"] = ["rate_unreadable"]
+        return out
+===
+a problem does not stop a verdict
+---
+    if reasons:
+        return out
+    if reading is None:
+---
+    if False:
+        return out
+    if reading is None:
+===
+page problems are dropped from the verdict
+---
+reasons = list(page_problems) + list(chain["problems"])
+---
+reasons = list(chain["problems"])
+===
+chain problems are dropped from the verdict
+---
+reasons = list(page_problems) + list(chain["problems"])
+---
+reasons = list(page_problems)
+===
+a window problem is dropped from the verdict
+---
+        if problem:
+            reasons.append(problem)
+---
+        if False:
+            reasons.append(problem)
+===
+the realised yield is not reported when the claim is not comparable
+---
+"realised": {str(k): v for k, v in realised.items()} if realised else None}
+---
+"realised": None}
+===
+the claim's own figure is not recorded
+---
+out["claim_bps"], out["basis"], out["period"] = claim, reading["basis"], reading["period"]
+---
+out["basis"], out["period"] = reading["basis"], reading["period"]
+===
+one source is enough
+---
+MIN_SOURCES = 2
+---
+MIN_SOURCES = 1
+===
+three sources are required
+---
+MIN_SOURCES = 2
+---
+MIN_SOURCES = 3
+===
+sources that disagree are tolerated
+---
+        elif len(set(answers)) != 1:
+---
+        elif False:
+===
+a block a node did not return is accepted
+---
+if block is not None and price is not None and block[0] == number:
+---
+if block is not None and price is not None:
+===
+a node that answers only for the block is counted
+---
+if block is not None and price is not None and block[0] == number:
+---
+if block is not None and block[0] == number:
+===
+the leader pins the highest finalized head
+---
+        now = min(heads)
+---
+        now = max(heads)
+===
+a validator accepts a block no source has finalized
+---
+        if now > max(heads):
+---
+        if False:
+===
+a validator accepts a block one past the finalized head
+---
+        if now > max(heads):
+---
+        if now > max(heads) + 1:
+===
+a validator accepts an old block
+---
+        if max(heads) - now > MAX_HEAD_LAG:
+---
+        if False:
+===
+a validator rejects a block exactly at the lag limit
+---
+        if max(heads) - now > MAX_HEAD_LAG:
+---
+        if max(heads) - now >= MAX_HEAD_LAG:
+===
+too few sources for the head are tolerated
+---
+    if len(heads) < MIN_SOURCES:
+---
+    if False:
+===
+the lag limit is a day
+---
+MAX_HEAD_LAG = 1800
+---
+MAX_HEAD_LAG = 7200
+===
+a zero price is accepted
+---
+    return value if value > 0 else None
+---
+    return value
+===
+a price word of any length is accepted
+---
+r"0x[0-9a-f]{64}", result)
+---
+r"0x[0-9a-f]{0,64}", result)
+===
+an upper-case price word is accepted
+---
+r"0x[0-9a-f]{64}", result)
+---
+r"0x[0-9a-fA-F]{64}", result)
+===
+a price that is not a string is accepted
+---
+if not (isinstance(result, str) and re.fullmatch
+---
+if not (re.fullmatch
+===
+a block without a positive number is accepted
+---
+if number is None or timestamp is None or number < 1 or timestamp < 1:
+---
+if number is None or timestamp is None:
+===
+a block without a timestamp is accepted
+---
+if number is None or timestamp is None or number < 1 or timestamp < 1:
+---
+if number is None or number < 1:
+===
+a block without a number is accepted
+---
+if number is None or timestamp is None or number < 1 or timestamp < 1:
+---
+if timestamp is None or timestamp < 1:
+===
+a hex quantity may be upper case or unprefixed
+---
+r"0x[0-9a-f]{1,%d}" % digits
+---
+r"(0x)?[0-9a-fA-F]{1,%d}" % digits
+===
+a node's error object is ignored
+---
+if not isinstance(doc, dict) or doc.get("error") is not None or "result" not in doc:
+---
+if not isinstance(doc, dict) or "result" not in doc:
+===
+a node's HTTP error is ignored
+---
+    if int(response.status) != 200:
+        return None
+    doc = _json
+---
+    if False:
+        return None
+    doc = _json
+===
+a node that never answers crashes the read
+---
+            if attempt == FETCH_ATTEMPTS - 1:
+                return None
+---
+            if attempt == FETCH_ATTEMPTS - 1:
+                raise
+===
+the finalized head is asked of one source only
+---
+for url in RPCS:
+        got = _block(url, "finalized")
+---
+for url in RPCS[:1]:
+        got = _block(url, "finalized")
+===
+the old blocks are not read
+---
+for days in (0,) + WINDOWS:
+---
+for days in (0, 7, 7):
+===
+a block is a day of seven thousand
+---
+BLOCKS_PER_DAY = 7200
+---
+BLOCKS_PER_DAY = 7000
+===
+the chain facts keep partial points on a problem
+---
+"points": [] if problems else points}
+---
+"points": points}
+===
+scripts are read as words
+---
+text = re.sub(r"<(script|style|noscript|template|svg)\b[\s\S]*?</\1\s*>", " ", text, flags=re.I)
+---
+pass
+===
+comments are read as words
+---
+text = re.sub(r"<!--[\s\S]*?-->", " ", text)
+---
+pass
+===
+markup is read as words
+---
+text = re.sub(r"<[^>]*>", " ", text)
+---
+pass
+===
+entities are left undecoded
+---
+html.unescape(text)
+---
+text
+===
+zero-width marks stay in the text
+---
+re.sub("[\u200b-\u200d\u2060\ufeff]", "", html.unescape(text))
+---
+html.unescape(text)
+===
+a figure far from the label counts
+---
+        if distance <= ANCHOR_RADIUS:
+---
+        if True:
+===
+a figure counts at twice the radius
+---
+ANCHOR_RADIUS = 250
+---
+ANCHOR_RADIUS = 500
+===
+a figure exactly at the radius is excluded
+---
+        if distance <= ANCHOR_RADIUS:
+---
+        if distance < ANCHOR_RADIUS:
+===
+candidates are farthest first
+---
+found.sort(key=lambda t: (t[0], t[1]))
+---
+found.sort(key=lambda t: (-t[0], t[1]))
+===
+candidates are in page order
+---
+found.sort(key=lambda t: (t[0], t[1]))
+---
+found.sort(key=lambda t: t[1])
+===
+candidates are not capped
+---
+for distance, start, m in found[:MAX_CANDIDATES]:
+---
+for distance, start, m in found:
+===
+the label is matched case-sensitively
+---
+    needle = label.casefold()
+---
+    needle = label
+===
+only the first label is considered
+---
+)][:MAX_LABEL_HITS]
+---
+)][:1]
+===
+every label hit is considered
+---
+)][:MAX_LABEL_HITS]
+---
+)]
+===
+the scan is not capped
+---
+        if count >= MAX_SCAN:
+            break
+---
+        if False:
+            break
+===
+the end of a range counts as a rate
+---
+PCT = re.compile(r"(?<![\w.%\-])
+---
+PCT = re.compile(r"(?<![\w.%])
+===
+a part of a longer number counts as a rate
+---
+PCT = re.compile(r"(?<![\w.%\-])
+---
+PCT = re.compile(r"(?<![%\-])
+===
+a figure may have a long fraction
+---
+(\d{1,3}(?:\.\d{1,4})?)\s?%
+---
+(\d{1,3}(?:\.\d+)?)\s?%
+===
+a figure may be four digits
+---
+(\d{1,3}(?:\.\d{1,4})?)\s?%
+---
+(\d{1,4}(?:\.\d{1,4})?)\s?%
+===
+the quote is a whole context
+---
+quote = text[_words_before(text, start, QUOTE_WORDS_BEFORE, CONTEXT_BEFORE):_words_after(text, m.end(), QUOTE_WORDS_AFTER, CONTEXT_AFTER)]
+---
+quote = context
+===
+the reader is shown a bare number
+---
+context = text[lo:start] + "\u00ab" + text[start:m.end()] + "\u00bb" + text[m.end():hi]
+---
+context = text[lo:hi]
+===
+a quote can start in the middle of a word
+---
+    if low > 0 and words:
+        words = words[1:]
+---
+    if False:
+        words = words[1:]
+===
+a quote can end in the middle of a word
+---
+    if end + limit < len(text) and words:
+        words = words[:-1]
+---
+    if False:
+        words = words[:-1]
+===
+a page that is not 200 is read
+---
+    if status != 200:
+        return {"problems": [f"page_http_{status}"]
+---
+    if False:
+        return {"problems": [f"page_http_{status}"]
+===
+a huge page is read
+---
+    if len(body) > MAX_PAGE_BYTES:
+---
+    if False:
+===
+a page with no figure is not a problem
+---
+"problems": [] if candidates else ["no_figure_near_the_label"]
+---
+"problems": []
+===
+a page problem hides its status
+---
+[f"page_http_{status}"]
+---
+["page_http"]
+===
+the reader is asked only once
+---
+READ_ATTEMPTS = 2
+---
+READ_ATTEMPTS = 1
+===
+the reader is asked three times
+---
+READ_ATTEMPTS = 2
+---
+READ_ATTEMPTS = 3
+===
+an answer need not say which figure
+---
+index = answer.get("index", -1)
+---
+index = answer.get("index")
+===
+a boolean is an index
+---
+(isinstance(index, int) and not isinstance(index, bool) and 0 <= index < count)
+---
+(isinstance(index, int) and 0 <= index < count)
+===
+an index past the end is accepted
+---
+(isinstance(index, int) and not isinstance(index, bool) and 0 <= index < count)
+---
+(isinstance(index, int) and not isinstance(index, bool) and 0 <= index)
+===
+a negative index is accepted
+---
+(isinstance(index, int) and not isinstance(index, bool) and 0 <= index < count)
+---
+(isinstance(index, int) and not isinstance(index, bool) and index < count)
+===
+any basis is accepted
+---
+answer.get("basis") in BASES
+---
+True
+===
+any period is accepted
+---
+answer.get("period") in PERIODS
+---
+True
+===
+any qualifier is accepted
+---
+answer.get("qualifier") in QUALIFIERS
+---
+True
+===
+an answer that is not an object is accepted
+---
+    if not isinstance(answer, dict):
+        return False
+    index
+---
+    if False:
+        return False
+    index
+===
+no headline rate is asked for again
+---
+        if answer["index"] is None:
+            return {"index": None
+---
+        if False:
+            return {"index": None
+===
+the reader's figure is taken from the answer rather than the page
+---
+return {"index": answer["index"], "number": chosen["number"]
+---
+return {"index": answer["index"], "number": str(answer["index"])
+===
+the reader is shown no figures
+---
+listing = "\n".join(f"[{i}] {c['context']}" for i, c in enumerate(candidates))
+---
+listing = ""
+===
+the page is not marked untrusted
+---
+--- BEGIN UNTRUSTED PAGE TEXT ---
+{listing}
+---
+{listing}
+===
+a model that fails crashes the check
+---
+    except Exception:
+        return None  # a model that did not return JSON
+---
+    except ZeroDivisionError:
+        return None  # a model that did not return JSON
+===
+a reading may carry extra fields
+---
+set(reading) == {"index", "number", "quote", "basis", "period", "qualifier"}
+---
+set(reading) >= {"index", "number", "quote", "basis", "period", "qualifier"}
+===
+a reading's quote may be enormous
+---
+len(reading["quote"]) <= 400
+---
+True
+===
+a reading's number may be anything
+---
+re.fullmatch(r"\d{1,3}(?:\.\d{1,4})?", reading["number"]) is not None
+---
+True
+===
+a reading's basis may be anything
+---
+reading["basis"] in BASES and reading["period"] in PERIODS and reading["qualifier"] in QUALIFIERS
+---
+True
+===
+a reading's index may be a boolean
+---
+(reading["index"] is None or (isinstance(reading["index"], int) and not isinstance(reading["index"], bool)))
+---
+True
+===
+a quote need not be on the page
+---
+    return reading["quote"] in text and re.search
+---
+    return re.search
+===
+a quote need not show the figure
+---
+    return reading["quote"] in text and re.search(re.escape(reading["number"]) + r"\s?%", reading["quote"]) is not None
+---
+    return reading["quote"] in text
+===
+a reading of no figure must still be grounded
+---
+    if reading["index"] is None:
+        return True
+    return reading["quote"]
+---
+    return reading["quote"]
+===
+the decision ignores the figure
+---
+return ("RATE", reading["number"], reading["basis"]
+---
+return ("RATE", "", reading["basis"]
+===
+the decision ignores the basis
+---
+return ("RATE", reading["number"], reading["basis"], reading["period"])
+---
+return ("RATE", reading["number"], "", reading["period"])
+===
+the decision ignores the period
+---
+return ("RATE", reading["number"], reading["basis"], reading["period"])
+---
+return ("RATE", reading["number"], reading["basis"], "")
+===
+no headline rate is not a decision of its own
+---
+if reading["index"] is None or reading["qualifier"] != "NONE" or reading["period"] not in COMPARABLE_PERIODS:
+---
+if reading["qualifier"] != "NONE" or reading["period"] not in COMPARABLE_PERIODS:
+===
+a qualified figure is a comparable decision
+---
+if reading["index"] is None or reading["qualifier"] != "NONE" or reading["period"] not in COMPARABLE_PERIODS:
+---
+if reading["index"] is None or reading["period"] not in COMPARABLE_PERIODS:
+===
+another period is a comparable decision
+---
+if reading["index"] is None or reading["qualifier"] != "NONE" or reading["period"] not in COMPARABLE_PERIODS:
+---
+if reading["index"] is None or reading["qualifier"] != "NONE":
+===
+an unreadable reading is a decision of its own
+---
+return ("UNREADABLE",)
+---
+return ("NOT_COMPARABLE",)
+===
+a not-comparable reading is a decision per qualifier
+---
+return ("NOT_COMPARABLE",)
+    return ("RATE"
+---
+return ("NOT_COMPARABLE", reading["qualifier"])
+    return ("RATE"
+===
+claim ids are unrestricted
+---
+_require(re.fullmatch(r"[A-Za-z0-9_-]{1,32}", claim_id) is not None,
+---
+_require(True,
+===
+a claim id can be reused
+---
+_require(claim_id not in self.claims, "claim_id already registered")
+---
+_require(True, "claim_id already registered")
+===
+any page url is accepted
+---
+_require(len(page_url) <= MAX_URL_LEN and URL_RE.fullmatch(page_url) is not None,
+---
+_require(True,
+===
+an overlong page url is accepted
+---
+_require(len(page_url) <= MAX_URL_LEN and URL_RE.fullmatch(page_url) is not None,
+---
+_require(URL_RE.fullmatch(page_url) is not None,
+===
+a url without a top-level domain is accepted
+---
+\.[a-z]{2,}(?:/[^\s#]*)?", re.I)
+---
+(?:\.[a-z]{2,})?(?:/[^\s#]*)?", re.I)
+===
+a very long host name is accepted
+---
+[a-z0-9.-]{1,120}(?:/|$))
+---
+[a-z0-9.-]{1,1200}(?:/|$))
+===
+a url with a fragment is accepted
+---
+(?:/[^\s#]*)?", re.I)
+---
+(?:/[^\s]*)?", re.I)
+===
+labels are unrestricted
+---
+_require(MIN_LABEL_LEN <= len(label) <= MAX_LABEL_LEN and label == label.strip() and "\n" not in label,
+---
+_require(True,
+===
+a one letter label is accepted
+---
+_require(MIN_LABEL_LEN <= len(label) <= MAX_LABEL_LEN and
+---
+_require(1 <= len(label) <= MAX_LABEL_LEN and
+===
+a label with edge spaces is accepted
+---
+and label == label.strip() and
+---
+and
+===
+a label with a newline is accepted
+---
+ and "\n" not in label,
+---
+,
+===
+any vault string is accepted
+---
+_require(re.fullmatch(r"0x[0-9a-fA-F]{40}", vault) is not None, "vault must be a 0x address")
+---
+_require(True, "vault must be a 0x address")
+===
+any rate call is accepted
+---
+_require(re.fullmatch(r"0x[0-9a-f]{8}(?:[0-9a-f]{64}){0,2}", rate_call) is not None,
+---
+_require(True,
+===
+a rate call with many arguments is accepted
+---
+(?:[0-9a-f]{64}){0,2}
+---
+(?:[0-9a-f]{64})*
+===
+an upper-case rate call is accepted
+---
+r"0x[0-9a-f]{8}(?:[0-9a-f]{64}){0,2}"
+---
+r"0x[0-9a-fA-F]{8}(?:[0-9a-fA-F]{64}){0,2}"
+===
+any tolerance is accepted
+---
+_require(TOLERANCE_MIN <= tolerance_bps <= TOLERANCE_MAX,
+---
+_require(True,
+===
+a tolerance above the maximum is accepted
+---
+_require(TOLERANCE_MIN <= tolerance_bps <= TOLERANCE_MAX,
+---
+_require(TOLERANCE_MIN <= tolerance_bps,
+===
+a tolerance of zero is accepted
+---
+_require(TOLERANCE_MIN <= tolerance_bps <= TOLERANCE_MAX,
+---
+_require(tolerance_bps <= TOLERANCE_MAX,
+===
+the tolerance minimum is exclusive
+---
+_require(TOLERANCE_MIN <= tolerance_bps <= TOLERANCE_MAX,
+---
+_require(TOLERANCE_MIN < tolerance_bps <= TOLERANCE_MAX,
+===
+a long note is accepted
+---
+_require(len(note) <= MAX_NOTE_LEN,
+---
+_require(True,
+===
+the vault is kept in the case it was given
+---
+        vault = vault.casefold()
+
+---
+
+===
+the same product can be registered twice
+---
+_require(key not in self.by_key,
+---
+_require(True,
+===
+the duplicate key ignores the label
+---
+key = f"{page_url}|{label.casefold()}|{vault}|{rate_call}"
+---
+key = f"{page_url}|{vault}|{rate_call}"
+===
+the duplicate key compares labels case-sensitively
+---
+key = f"{page_url}|{label.casefold()}|{vault}|{rate_call}"
+---
+key = f"{page_url}|{label}|{vault}|{rate_call}"
+===
+the duplicate key ignores the call
+---
+key = f"{page_url}|{label.casefold()}|{vault}|{rate_call}"
+---
+key = f"{page_url}|{label.casefold()}|{vault}"
+===
+a refused registration is recorded anyway
+---
+        _require(not problems, "claim refused: " + ", ".join(problems))
+---
+        _require(True, "claim refused: " + ", ".join(problems))
+===
+registration does not read the page
+---
+page = _gather_page(page_url, label)
+            return json.dumps({"page_problems": page["problems"], "chain": _gather_chain(vault, rate_call)}, sort_keys=True)
+---
+return json.dumps({"page_problems": [], "chain": _gather_chain(vault, rate_call)}, sort_keys=True)
+===
+a validator accepts a registration the leader refused for a chain problem
+---
+            if leader["chain"].get("problems"):
+                return bool(mine_chain["problems"])
+---
+            if leader["chain"].get("problems"):
+                return True
+===
+a validator does not compare the chain at registration
+---
+            return leader["chain"] == mine_chain
+
+        result
+---
+            return True
+
+        result
+===
+the claim stores a different tolerance
+---
+c.tolerance_bps = u32(tolerance_bps)
+---
+c.tolerance_bps = u32(50)
+===
+the claim does not record who registered it
+---
+        c.registrant = gl.message.sender_address
+
+---
+
+===
+the claim is not indexed
+---
+        self.by_key[key] = claim_id
+---
+        pass
+===
+a validator does not check the leader's shape
+---
+if (not isinstance(leader, dict) or not isinstance(leader.get("chain"), dict)
+                    or not isinstance(leader.get("page_problems"), list) or not _reading_shape_ok(leader.get("reading"))):
+                return False
+---
+if not isinstance(leader, dict):
+                return False
+===
+a validator does not check the reading's shape
+---
+or not _reading_shape_ok(leader.get("reading"))):
+---
+):
+===
+a validator does not compare the chain
+---
+                if leader["chain"] != mine_chain:
+                    return False
+---
+                pass
+===
+a validator accepts a chain problem it cannot see
+---
+            elif not mine_chain["problems"]:
+                return False
+---
+            elif False:
+                return False
+===
+a validator does not compare page problems
+---
+            if bool(leader["page_problems"]) != bool(mine_page["problems"]):
+                return False
+            if leader_chain_ok:
+---
+            if leader_chain_ok:
+===
+a validator accepts a reading of nothing
+---
+                return theirs is None  # no reading of nothing
+---
+                return True
+===
+a validator does not ground the quote
+---
+            if theirs is not None and not _quote_grounded(theirs, mine_page["text"]):
+                return False
+---
+            if False:
+                return False
+===
+a validator does not compare the decision
+---
+            return _decision_key(theirs) == _decision_key(mine_reading)
+---
+            return True
+===
+a validator compares only that both read a figure
+---
+            return _decision_key(theirs) == _decision_key(mine_reading)
+---
+            return _decision_key(theirs)[0] == _decision_key(mine_reading)[0]
+===
+the leader reads even when the chain is broken
+---
+reading = None if page["problems"] or chain["problems"] else _read(page, page_url, label)
+---
+reading = None if page["problems"] else _read(page, page_url, label)
+===
+the leader reads even when the page is broken
+---
+reading = None if page["problems"] or chain["problems"] else _read(page, page_url, label)
+---
+reading = None if chain["problems"] else _read(page, page_url, label)
+===
+the leader's chain is not pinned for the validator
+---
+mine_chain = _gather_chain(vault, rate_call, pins["now"] if isinstance(pins, dict) and leader_chain_ok else None)
+---
+mine_chain = _gather_chain(vault, rate_call, None)
+===
+an unknown claim can be checked
+---
+_require(claim_id in self.claims, "unknown claim_id")
+        stored
+---
+_require(True, "unknown claim_id")
+        stored
+===
+the check is stamped at the wrong time
+---
+        now = _now()
+
+        def leader_fn() -> str:
+            page = _gather_page(page_url, label)
+            chain
+---
+        now = _now() - datetime.timedelta(days=1)
+
+        def leader_fn() -> str:
+            page = _gather_page(page_url, label)
+            chain
+===
+the verdict is derived with a different tolerance
+---
+judged = _judge(result["chain"], result["reading"], result["page_problems"], tolerance)
+---
+judged = _judge(result["chain"], result["reading"], result["page_problems"], tolerance + 1000)
+===
+an undetermined check counts as decided
+---
+        if judged["verdict"] in DECIDED:
+            stored.decided_count
+---
+        if True:
+            stored.decided_count
+===
+a not-comparable check does not count as decided
+---
+DECIDED = ("MATCHES", "OVERSTATED", "UNDERSTATED", "NOT_COMPARABLE")
+---
+DECIDED = ("MATCHES", "OVERSTATED", "UNDERSTATED")
+===
+a decided check does not become the standing
+---
+            stored.latest_decided_id = u32(index)
+---
+            pass
+===
+checks do not link to the previous one
+---
+        record.has_previous = stored.check_count > 0
+---
+        record.has_previous = False
+===
+the previous link points at the wrong check
+---
+        record.previous_id = stored.latest_id if stored.check_count > 0 else u32(0)
+---
+        record.previous_id = u32(0)
+===
+the latest check is not remembered
+---
+        stored.latest_id = u32(index)
+---
+        pass
+===
+the check count does not advance
+---
+        stored.check_count = u32(stored.check_count + 1)
+---
+        pass
+===
+the chain facts are not recorded
+---
+        record.chain_json = json.dumps(result["chain"], sort_keys=True)
+---
+        record.chain_json = "{}"
+===
+the reading is not recorded
+---
+        record.reading_json = json.dumps(reading, sort_keys=True)
+---
+        record.reading_json = "null"
+===
+the sender is not recorded
+---
+        record.submitted_by = gl.message.sender_address
+        record.checked_at = now
+---
+        record.checked_at = now
+===
+the standing ignores whether any check was decided
+---
+        if c.decided_count == 0:
+            return out
+---
+        if False:
+            return out
+===
+the standing is the latest check even when undetermined
+---
+        index = int(c.latest_decided_id)
+        k = self.checks[index]
+---
+        index = int(c.latest_id)
+        k = self.checks[index]
+===
+the standing's age is reversed
+---
+int((_now() - k.checked_at).total_seconds())
+---
+int((k.checked_at - _now()).total_seconds())
+===
+history is not capped
+---
+while len(out) < min(limit, MAX_PAGE_LIMIT):
+---
+while len(out) < limit:
+===
+check paging is not capped
+---
+limit = min(limit, MAX_PAGE_LIMIT)
+        out = []
+        i = len(self.checks) - 1 - offset
+---
+out = []
+        i = len(self.checks) - 1 - offset
+===
+check paging ignores the offset
+---
+i = len(self.checks) - 1 - offset
+---
+i = len(self.checks) - 1
+===
+history stops after the first check
+---
+            if not k.has_previous:
+                break
+---
+            if True:
+                break
+===
+an unknown claim has a standing
+---
+        if claim_id not in self.claims:
+            return {"exists": False, "claim_id": claim_id}
+---
+        if False:
+            return {"exists": False, "claim_id": claim_id}
+===
+an unknown check can be read
+---
+_require(check_id < len(self.checks), "unknown check_id")
+---
+_require(True, "unknown check_id")
